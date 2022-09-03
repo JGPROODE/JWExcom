@@ -1,27 +1,8 @@
 import csv
 import os
 klas='25188OLVM9A2'
-
-pad1='C:/Excom-csv/'
-pad2='C:/Excom-csv/'
-extentie1='.csv'
-extentie2='.txt'
-bestand1='studenten_2022-09-01_141331'
-bestand2='studenten_2022-09-01_141331'
-
-
-#padnaarbestand= 'C:/Examens/Klassen 2020/cohort 2019/'+klas+'.csv'
-#padnaarbestand2= 'c:/Examens/klassen 2020/cohort 2019/'+klas
-
-padnaarbestand= pad1+bestand1+extentie1
-padnaarbestand2= pad2+bestand2
-
-
-
-
-
-
-
+padnaarbestand= 'C:/Examens/Klassen 2020/cohort 2019/'+klas+'.csv'
+padnaarbestand2= 'c:/Examens/klassen 2020/cohort 2019/'+klas
 
 if (os.path.isdir(padnaarbestand2)==False) :
             os.mkdir(padnaarbestand2)
