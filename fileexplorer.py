@@ -1,6 +1,8 @@
 # Python program to create
 # a file explorer in Tkinter
-
+#import os
+from fileinput import filename
+import shutil
 # import all components
 # from the tkinter library
 from tkinter import *
@@ -19,9 +21,17 @@ def browseFiles():
 														"*.*")))
 	
 	# Change label contents
+ 	
 	label_file_explorer.configure(text="File Opened: "+filename)
+	print(filename)
 	
-	
+ 
+bestandsnaam="studenten_2022-09-20_114432.xlsx"
+bronpad= "C:/tmp/25604bolbbl202020212022/"  
+
+def copyFile():
+    shutil.copy(bronpad+bestandsnaam, "c:/tmp/"+bestandsnaam)
+    	
 																								
 # Create the root window
 window = Tk()
@@ -46,6 +56,10 @@ button_explore = Button(window,
 						text = "Browse Files",
 						command = browseFiles)
 
+button_copy = Button(window,
+					text = "Copy",
+					command = copyFile)
+
 button_exit = Button(window,
 					text = "Exit",
 					command = exit)
@@ -57,8 +71,9 @@ button_exit = Button(window,
 label_file_explorer.grid(column = 1, row = 1)
 
 button_explore.grid(column = 1, row = 2)
+button_copy.grid(column=1,row=3)
 
-button_exit.grid(column = 1,row = 3)
+button_exit.grid(column = 1,row = 4)
 
 # Let the window wait for any events
 window.mainloop()

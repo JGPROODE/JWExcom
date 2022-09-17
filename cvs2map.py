@@ -69,12 +69,10 @@ def haalOpleidingOmschrijvingOp(opleiding):
         oms="F&V 25526 Junior stylist"     
     elif opleiding =="25527":
         oms="F&V 25527 Junior productmanager fashion"   
-    elif opleiding =="25689":
-        oms="F&V 25212 Ruimtelijk vormgever"   
-    #vanaf 2020   
+    #vanaf 2020ev  
     elif opleiding =="23207":
         oms="F&V 23207 Fashion design & productmanagement"     
-    elif opleiding =="23684":
+    elif opleiding =="25684":
         oms="F&V 25684 Assitant Fashion Tailor"   
     elif opleiding =="25686":
         oms="F&V 25686 Fashion Tailor"     
@@ -114,7 +112,13 @@ maakMap(padNaarDoel)
 
 bronMap="c:/tmp/CSVbron"
 cohortenOverzicht= ["2020","2021","2022"]
-opleidingenOverzicht=["25187","25188","25604"]
+opleidingenlijstICT=["25189","25191","25605","25606","25607"]
+opleidingenlijstMedia=["25199","25200","25201","25633"]
+opleidingenlijstFenV=["23207","25158","25159","25212","25526","25527","25163","25164","25684","25686","25687","25688","25689","25771","25811"]
+opleidingenlijstDans=["25495"]
+opleidingenlijstCT=["25187","25188","25604","25265"]
+opleidingenOverzicht=opleidingenlijstICT+opleidingenlijstMedia+opleidingenlijstCT+opleidingenlijstFenV+opleidingenlijstDans
+#["25187","25188","25604","25265","25199","25200","25201","25633","25189","25191","25605","25606","25607", ]
 
 
 
