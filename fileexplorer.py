@@ -12,25 +12,31 @@ from tkinter import filedialog
 
 # Function for opening the
 # file explorer window
+
+filename=""
+
 def browseFiles():
-	filename = filedialog.askopenfilename(initialdir = "/",
+	global filename
+
+	filename = filedialog.askopenfilename(initialdir = "\\",
 										title = "Select a File",
-										filetypes = (("Text files",
-														"*.txt*"),
-													("all files",
-														"*.*")))
+										filetypes = (("all files",
+														"*.*"),("Text files",
+														"*.txt*")))
 	
 	# Change label contents
  	
 	label_file_explorer.configure(text="File Opened: "+filename)
 	print(filename)
-	
- 
-bestandsnaam="studenten_2022-09-20_114432.xlsx"
-bronpad= "C:/tmp/25604bolbbl202020212022/"  
+
+
+padnaam=filename.split("/")
+print(padnaam[-1])
+bestandsnaam=padnaam[-1]
+bronpad= "C:\\tmp\\25604bolbbl202020212022\\"  
 
 def copyFile():
-    shutil.copy(bronpad+bestandsnaam, "c:/tmp/"+bestandsnaam)
+    shutil.copy(filename, "c:\\tmp\\"+bestandsnaam)
     	
 																								
 # Create the root window
