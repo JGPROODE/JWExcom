@@ -9,7 +9,7 @@ extentie2='.txt'
 bestand1='studenten_2022-09-01_141331'
 bestand2='studenten_2022-09-01_141331'
 
-
+#commetaar
 #padnaarbestand= 'C:/Examens/Klassen 2020/cohort 2019/'+klas+'.csv'
 #padnaarbestand2= 'c:/Examens/klassen 2020/cohort 2019/'+klas
 
