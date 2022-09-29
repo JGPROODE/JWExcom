@@ -80,7 +80,7 @@ def haalOpleidingOmschrijvingOp(opleiding):
         oms="F&V 25687 Fashion Designer"   
     elif opleiding =="25688":
         oms="F&V 25688 Fashion Product Coordinator "     
-    elif opleiding =="2689":
+    elif opleiding =="25689":
         oms="F&V 25689 Basismedewerker fashion"   
     elif opleiding =="25771":
         oms="F&V 25771 Interieuradviseur"     
@@ -92,7 +92,9 @@ def haalOpleidingOmschrijvingOp(opleiding):
     elif opleiding =="25200":
         oms="Media 25200 Mediaredactiemedewerker"      
     elif opleiding=="25201":
-        oms="Media 25201 Mediavormgever"       
+        oms="Media 25201 Mediavormgever"   
+    elif opleiding=="25633":
+        oms="Media 25633 Mediavormgever"    
     else:
          oms="99999-foutje"
     return oms
