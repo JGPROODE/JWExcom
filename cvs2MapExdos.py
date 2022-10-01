@@ -177,29 +177,29 @@ for file in dirs:
         for row in data:
             print(row[0])
             cohort=row[5]
-            opl=row[4][0:5]
+            crebo=row[4][0:5]
             
             
             if cohort in cohortenOverzicht : #["2020","2021","2022"]:
                 #test
                 print(row[5]+ row[4])
-                if opl in opleidingenOverzicht:
+                if crebo in opleidingenOverzicht:
                     #test
-                    print(opl)
+                    print(crebo)
                     
                     # is er een tussenvoegsel ?
                     if row[1]=="" :
-                        mapnaam=row[0]+" "+row[2]+" "+row[3]
+                        studentMapnaam=row[0]+" "+row[2]+" "+row[3]
                     else:
-                        mapnaam=row[0]+" "+row[1]+" "+row[2]+" "+row[3]
+                        studentMapnaam=row[0]+" "+row[1]+" "+row[2]+" "+row[3]
                     #test
-                    print(mapnaam)
-                    opleidingOmschrijving=haalOpleidingOmschrijvingOp(opl) # row[4][0:5]
+                    print(studentMapnaam)
+                    opleidingOmschrijving=haalOpleidingOmschrijvingOp(crebo) # row[4][0:5]
                     soortOpleiding=row[4][5:8]
                     #cohort=row[5]
                     padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Studentendosiers"
-                    mapnaam=padNaarDoel+"/"+mapnaam
-                    maakMap(mapnaam)
+                    padEnMapnaam=padNaarDoel+"/"+studentMapnaam
+                    maakMap(padEnMapnaam)
                     
                     
 #einde            

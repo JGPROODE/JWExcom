@@ -27,6 +27,82 @@ def maakMap(path):
             print ("The directory %s existed already." % path)
             
 
+
+
+def haalKeuzedelenOp(opleiding):
+    #opleiding=ol[0:5]
+    #niet meer per 2020
+    if opleiding =="25187":
+        kds=["K0059","K0080","K0125","K0497","K0505","K0529"]   
+    elif opleiding =="25188":
+        kds=["K0059","K0080","K0125","K0497","K0505","K0529"]   
+    elif opleiding =="25265":
+        kds=["K0059","K0080","K0125","K0226","K0512","K0781"]      
+    elif opleiding =="25604":
+        kds=["K0059","K0356","K0481","K0497","K0519","K0529","K0542","K0717","K0730","K0767","K0781","K0788"]        
+    #DANS
+    #niet meer per 2022
+    elif opleiding =="25495":
+        kds=["K0165"]
+    #ICT
+    elif opleiding =="25189":
+        kds=["K0226","K0400","K0444","K0505"]
+    elif opleiding =="25191":
+        kds=["K0400","K0505","K0665","K0721"]
+    elif opleiding =="25192":
+        kds= =["K0224","K0665","K0719","K0721","K1030"]
+    #vanaf2020
+    elif opleiding =="25605":
+        kds=["K0225","K0505","K0721","K0803","K1030"]                       
+    elif opleiding =="25606":
+        kds=["K0125","K0226","K0360","K0505"]                        
+    elif opleiding =="25607":
+        kds==["K0665","K0721","K1030"]       
+    #F&V
+    elif opleiding =="25158":
+        kds=["K0125","K0206","K0461","K0725"]      
+    elif opleiding =="25159":
+        kds=["K007","K0209","K0211"]          
+    elif opleiding =="25163":
+        kds=["K0206","K0461","K0725"]            
+    elif opleiding =="25164":
+        kds=["K0125","K0206","K0461","K0725"]        
+    elif opleiding =="25212":
+        kds=["K0031","K0184","K0189","K0766"]        
+    elif opleiding =="25526":
+        kds= ["K0031","K0080","K0125","K0206"]      
+    elif opleiding =="25527":
+        kds=["K0031","K0080","K0125","K0206"]      
+    #vanaf 2020  
+    elif opleiding =="23207":
+        kds="F&V 23207 Fashion design & productmanagement"     
+    elif opleiding =="25684":
+        kds="F&V 25684 Assitant Fashion Tailor"   
+    elif opleiding =="25686":
+        kds="F&V 25686 Fashion Tailor"     
+    elif opleiding =="25687":
+        kds="F&V 25687 Fashion Designer"   
+    elif opleiding =="25688":
+        kds="F&V 25688 Fashion Product Coordinator "     
+    elif opleiding =="25689":
+        kds="F&V 25689 Basismedewerker fashion"   
+    elif opleiding =="25771":
+        kds="F&V 25771 Interieuradviseur"     
+    elif opleiding =="25811":
+        kds="F&V 25811 Ruimtelijk vormgever"   
+    #MEDIA
+    elif opleiding =="25199":
+        kds="Media 25199 Mediamanager"   
+    elif opleiding =="25200":
+        kds="Media 25200 Mediaredactiemedewerker"      
+    elif opleiding=="25201":
+        kds="Media 25201 Mediavormgever"   
+    elif opleiding=="25633":
+        kds="Media 25633 Mediavormgever"    
+    else:
+        kds="99999-foutje"
+    return kds
+
 def haalOpleidingOmschrijvingOp(opleiding):
     #opleiding=ol[0:5]
     #CT
@@ -98,6 +174,8 @@ def haalOpleidingOmschrijvingOp(opleiding):
     else:
          oms="99999-foutje"
     return oms
+
+
 
 #diverse parameters
 cohort="1959"
@@ -178,24 +256,24 @@ for file in dirs:
             print(row[0])
             cohort=row[5]
             #crebo=opl
-            opl=row[4][0:5]
+            crebo=row[4][0:5]
             
             
             if cohort in cohortenOverzicht : #["2020","2021","2022"]:
                 #test
                 print(row[5]+ row[4])
-                if opl in opleidingenOverzicht:
+                if crebo in opleidingenOverzicht:
                     #test
-                    print(opl)
+                    print(crebo)
                     
                     # is er een tussenvoegsel ?
                     if row[1]=="" :
-                        mapnaam=row[0]+" "+row[2]+" "+row[3]
+                        studentMapnaam=row[0]+" "+row[2]+" "+row[3]
                     else:
-                        mapnaam=row[0]+" "+row[1]+" "+row[2]+" "+row[3]
+                        studentMapnaam=row[0]+" "+row[1]+" "+row[2]+" "+row[3]
                     #test
-                    print(mapnaam)
-                    opleidingOmschrijving=haalOpleidingOmschrijvingOp(opl) # row[4][0:5]
+                    print(studentMapnaam)
+                    opleidingOmschrijving=haalOpleidingOmschrijvingOp(crebo) # row[4][0:5]
                     #crebo=haalCreboOp(opl)
                     #niet nodig opl = crebo
                     
@@ -203,8 +281,8 @@ for file in dirs:
                     soortOpleiding=row[4][5:8]
                     #aanpassen voor beoordelingen CI
                     padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Studentendosiers"
-                    mapnaam=padNaarDoel+"/"+mapnaam
-                    maakMap(mapnaam)
+                    padEnMapnaam=padNaarDoel+"/"+studentMapnaam
+                    maakMap(padEnMapnaam)
                     
                     
 #einde            
