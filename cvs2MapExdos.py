@@ -105,14 +105,16 @@ soortOpleiding="QQP"
 opleidingOmschrijving="NN 9999 leuke opleiding"
 
 
-dirPath = "C:/tmp/CSV"
+#dirPath = "C:/tmp/CSV"
+dirPath= "C:/ExcomCSV/CSVbron initialen"
 #padNaarDoel in het nieuwe dirPath
 pnd = "C:/Examendossiers"
 padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Studentendosiers"
 #test
 maakMap(padNaarDoel)
 
-bronMap="c:/tmp/CSVbron"
+#bronMap="c:/tmp/CSVbron"
+bronMap="C:\ExcomCSV\CSVbron initialen"
 cohortenOverzicht= ["2020","2021","2022"]
 opleidingenlijstICT=["25189","25191","25605","25606","25607"]
 opleidingenlijstMedia=["25199","25200","25201","25633"]
