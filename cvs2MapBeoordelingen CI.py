@@ -26,12 +26,120 @@ def maakMap(path):
         else:
             print ("The directory %s existed already." % path)
             
+def maakInhoudMapStudent(pad,kds,gitems,bitems):
+    items=["/Beroepsgericht","/BPV","/Generiek","/L&B","/Keuzedelen"]
+    for item in items:
+        maakMap(pad+str(item))
+    for keuzedeel in kds:
+        maakMap(pad+items[-1]+"/"+str(keuzedeel))
+    for gitem in gitems:
+        #generiek is index 2
+        maakMap(pad+items[2]+"/"+str(gitem))
+    for bitem in bitems:
+        #beroepsspecifiek is index 0
+        maakMap(pad+items[0]+"/"+str(bitem))
+        
+        
+        
+        
+def haalGeneriekOp(opleiding):
+    if opleiding=="25192":
+        gen=["Nederlands", "Rekenen"]
+    else:
+        gen=["Engels","Nederlands", "Rekenen"]
+    return gen
 
 
 
+
+
+    #haalBeroepsgericht op !
+#####################################
+
+def haalBeroepsgerichtOp(opleiding):
+    #opleiding=ol[0:5]
+    #niet meer per 2020
+    #CT
+    if opleiding =="25187":
+        bg=["B1-K1","B1-K2","B1-K3","P1-K1","CEF Engels"]   
+    elif opleiding =="25188":
+        bg=["B1-K1","B1-K2","B1-K3","P1-K1","CEF Engels"]   
+    elif opleiding =="25265":
+        bg=["B1-K1","B1-K2","B1-K3"]      
+    elif opleiding =="25604":
+        bg=["B1-K1","B1-K2"]           
+    #DANS
+    #niet meer per 2022
+    elif opleiding =="25495":
+        bg=["B1-K1","B1-K2","B1-K3","P1-K1","CEF Engels"]  
+    #ICT
+    elif opleiding =="25189":
+        bg["B1-K1","B1-K2","B1-K3","P1-K1","P1-K2","CEF Engels"]  
+    elif opleiding =="25191":
+        bg=["B1-K1","B1-K2","B1-K3","P2-K1","CEF Engels"]  
+    elif opleiding =="25192":
+        bg=["B1-K1","B1-K2","CEF Engels"]  
+    #vanaf2020
+    elif opleiding =="25605":
+        bg=["B1-K1","B1-K2","B1-K3"]                    
+    elif opleiding =="25606":
+        bg=["B1-K1","B1-K2","B1-K3","P2-K1","P2-K2"]                 
+    elif opleiding =="25607":
+        bg=["B1-K1","B1-K2"]     
+    #F&V
+    elif opleiding =="25158":
+        bg=["B1-K1","B1-K2","B1-K3"]     
+    elif opleiding =="25159":
+        bg=["B1-K1","B1-K2"]           
+    elif opleiding =="25163":
+        bg=["B1-K1","B1-K2","B1-K3"]        
+    elif opleiding =="25164":
+        bg=["B1-K1","B1-K2","B1-K3","P2-K1"]  
+    elif opleiding =="25212":
+        bg=["B1-K1","P2-K1","P2-K2","P2-K3"]        
+    elif opleiding =="25526":
+        bg=["B1-K1","B1-K2","B1-K3","P1-K1","P1-K2","P1-K3","CEF Engels"] 
+    elif opleiding =="25527":
+        bg=["B1-K1","B1-K2","B1-K3","P2-K1","P2-K2","CEF Engels"] 
+    #vanaf 2020  
+    #LLLLLAAATSTE
+    elif opleiding =="23207":
+        bg=["B1-K1","B1-K2","B1-K3","P2-K1"]      
+    elif opleiding =="25684":
+        bg=["B1-K1","P2-K1","P2-K2","P2-K3"]     
+    elif opleiding =="25686":
+        bg=["B1-K1","B1-K2","B1-K3"]   
+    elif opleiding =="25687":
+        bg=["B1-K1","B1-K2"] 
+    elif opleiding =="25688":
+        bg=["B1-K1","B1-K2","B1-K3","P1-K1","P1-K2","P1-K3","CEF Engels"]  
+    elif opleiding =="25689":
+        bg=["B1-K1","B1-K2","B1-K3"]  
+    elif opleiding =="25771":
+        bg=["B1-K1","B1-K2","B1-K3"]    
+    elif opleiding =="25811":
+        bg=["B1-K1","B1-K2","B1-K3"]  
+    #MEDIA
+    elif opleiding =="25199":
+        bg=["B1-K1","B1-K2","B1-K3"]  
+    elif opleiding =="25200":
+        bg=["B1-K1","B1-K2","B1-K3"]       
+    elif opleiding=="25201":
+        bg=["B1-K1","B1-K2","B1-K3"]  
+    elif opleiding=="25633":
+        bg=["B1-K1","B1-K2"]  
+    else:
+        bg="bg-foutje"
+    return bg
+
+
+
+
+###################################
 def haalKeuzedelenOp(opleiding):
     #opleiding=ol[0:5]
     #niet meer per 2020
+    #CT
     if opleiding =="25187":
         kds=["K0059","K0080","K0125","K0497","K0505","K0529"]   
     elif opleiding =="25188":
@@ -50,14 +158,14 @@ def haalKeuzedelenOp(opleiding):
     elif opleiding =="25191":
         kds=["K0400","K0505","K0665","K0721"]
     elif opleiding =="25192":
-        kds= =["K0224","K0665","K0719","K0721","K1030"]
+        kds=["K0224","K0665","K0719","K0721","K1030"]
     #vanaf2020
     elif opleiding =="25605":
         kds=["K0225","K0505","K0721","K0803","K1030"]                       
     elif opleiding =="25606":
         kds=["K0125","K0226","K0360","K0505"]                        
     elif opleiding =="25607":
-        kds==["K0665","K0721","K1030"]       
+        kds=["K0665","K0721","K1030"]       
     #F&V
     elif opleiding =="25158":
         kds=["K0125","K0206","K0461","K0725"]      
@@ -68,39 +176,40 @@ def haalKeuzedelenOp(opleiding):
     elif opleiding =="25164":
         kds=["K0125","K0206","K0461","K0725"]        
     elif opleiding =="25212":
-        kds=["K0031","K0184","K0189","K0766"]        
+        kds=["K0031","K0184","K0189","K0766"]    
     elif opleiding =="25526":
-        kds= ["K0031","K0080","K0125","K0206"]      
+        kds=["K0031","K0080","K0125","K0206"]      
     elif opleiding =="25527":
         kds=["K0031","K0080","K0125","K0206"]      
     #vanaf 2020  
+    #LLLLLAAATSTE
     elif opleiding =="23207":
-        kds="F&V 23207 Fashion design & productmanagement"     
+        kds=["K0125","K0206","K0461","K0725"]  
     elif opleiding =="25684":
-        kds="F&V 25684 Assitant Fashion Tailor"   
+        kds=["K0031","K0184","K0189","K0766"]   
     elif opleiding =="25686":
-        kds="F&V 25686 Fashion Tailor"     
+        kds=["K0031","K0080","K0125","K0156"]   
     elif opleiding =="25687":
-        kds="F&V 25687 Fashion Designer"   
+        kds=["K007","K0209","K0211"] 
     elif opleiding =="25688":
-        kds="F&V 25688 Fashion Product Coordinator "     
+        kds=["K0031","K0080","K0125","K0206"]   
     elif opleiding =="25689":
-        kds="F&V 25689 Basismedewerker fashion"   
+        kds=["K0031","K0080","K0125","K0156"]  
     elif opleiding =="25771":
-        kds="F&V 25771 Interieuradviseur"     
+        kds=["K0031","K0080","K0125","K0156"]    
     elif opleiding =="25811":
-        kds="F&V 25811 Ruimtelijk vormgever"   
+        kds=["K0031","K0080","K0125","K0156"] 
     #MEDIA
     elif opleiding =="25199":
-        kds="Media 25199 Mediamanager"   
+        kds=["K0031","K0125","K0361","K0389","K0528","K0765","K0769","K0781","K0881"]   
     elif opleiding =="25200":
-        kds="Media 25200 Mediaredactiemedewerker"      
+        kds=["K0031","K0125","K0361","K0389","K0528","K0765","K0769","K0781","K0881"]       
     elif opleiding=="25201":
-        kds="Media 25201 Mediavormgever"   
+        kds=["K0031","K0184","K0250","K0528","K0769","K0781"]  
     elif opleiding=="25633":
-        kds="Media 25633 Mediavormgever"    
+        kds=["K0031","K0125","K0361","K0389","K0528","K0765","K0769","K0781","K0881"]  
     else:
-        kds="99999-foutje"
+        kds="kds-foutje"
     return kds
 
 def haalOpleidingOmschrijvingOp(opleiding):
@@ -140,7 +249,7 @@ def haalOpleidingOmschrijvingOp(opleiding):
     elif opleiding =="25164":
         oms="F&V 25164 Specialist mode maatkleding"   
     elif opleiding =="25212":
-        oms="F&V 25212 Ruimtelijk vormgever"      
+        oms="F&V 25212 Ruimtelijk vormgever"  
     elif opleiding =="25526":
         oms="F&V 25526 Junior stylist"     
     elif opleiding =="25527":
@@ -172,7 +281,7 @@ def haalOpleidingOmschrijvingOp(opleiding):
     elif opleiding=="25633":
         oms="Media 25633 Mediavormgever"    
     else:
-         oms="99999-foutje"
+         oms="oploms-foutje"
     return oms
 
 
@@ -257,14 +366,23 @@ for file in dirs:
             cohort=row[5]
             #crebo=opl
             crebo=row[4][0:5]
-            
+            #test
+            print(crebo)
             
             if cohort in cohortenOverzicht : #["2020","2021","2022"]:
                 #test
                 print(row[5]+ row[4])
                 if crebo in opleidingenOverzicht:
-                    #test
-                    print(crebo)
+                    # info ophalen als het nodig is
+                    opleidingOmschrijving=haalOpleidingOmschrijvingOp(crebo) # row[4][0:5]
+                    #crebo en cohort als parametre?
+                    keuzedelen=haalKeuzedelenOp(crebo)
+                    generiekItems=haalGeneriekOp(crebo)
+                    beroepsItems=haalBeroepsgerichtOp(crebo)
+                    soortOpleiding=row[4][5:8]
+                    
+                    
+                   
                     
                     # is er een tussenvoegsel ?
                     if row[1]=="" :
@@ -273,17 +391,12 @@ for file in dirs:
                         studentMapnaam=row[0]+" "+row[1]+" "+row[2]+" "+row[3]
                     #test
                     print(studentMapnaam)
-                    opleidingOmschrijving=haalOpleidingOmschrijvingOp(crebo) # row[4][0:5]
-                    #crebo=haalCreboOp(opl)
-                    #niet nodig opl = crebo
-                    
-                    
-                    soortOpleiding=row[4][5:8]
+                   
                     #aanpassen voor beoordelingen CI
                     padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Studentendosiers"
                     padEnMapnaam=padNaarDoel+"/"+studentMapnaam
                     maakMap(padEnMapnaam)
-                    
+                    maakInhoudMapStudent(padEnMapnaam,keuzedelen,generiekItems, beroepsItems)
                     
 #einde            
     
