@@ -241,36 +241,36 @@ def haalOpleidingOmschrijvingOp(opleiding):
         oms="ICT 25607 Medewerker ICT support"       
     #F&V
     elif opleiding =="25158":
-        oms="F,V&D 25158 Interieuradviseur"   
+        oms="F&V 25158 Interieuradviseur"   
     elif opleiding =="25159":
-        oms="F,V&D 25159 Basismedewerker mode"      
+        oms="F&V 25159 Basismedewerker mode"      
     elif opleiding =="25163":
-        oms="F,V&D25163 Allround medewerker mode maatkleding"       
+        oms="F&V 25163 Allround medewerker mode maatkleding"       
     elif opleiding =="25164":
-        oms="F,V&D 25164 Specialist mode maatkleding"   
+        oms="F&V 25164 Specialist mode maatkleding"   
     elif opleiding =="25212":
-        oms="F,V&D 25212 Ruimtelijk vormgever"  
+        oms="F&V 25212 Ruimtelijk vormgever"  
     elif opleiding =="25526":
-        oms="F,V&D 25526 Junior stylist"     
+        oms="F&V 25526 Junior stylist"     
     elif opleiding =="25527":
-        oms="F,V&D 25527 Junior productmanager fashion"   
+        oms="F&V 25527 Junior productmanager fashion"   
     #vanaf 2020ev  
     elif opleiding =="23207":
-        oms="F,V&D 23207 Fashion design & productmanagement"     
+        oms="F&V 23207 Fashion design & productmanagement"     
     elif opleiding =="25684":
-        oms="F,V&D 25684 Assitant Fashion Tailor"   
+        oms="F&V 25684 Assitant Fashion Tailor"   
     elif opleiding =="25686":
-        oms="F,V&D 25686 Fashion Tailor"     
+        oms="F&V 25686 Fashion Tailor"     
     elif opleiding =="25687":
-        oms="F,V&D 25687 Fashion Designer"   
+        oms="F&V 25687 Fashion Designer"   
     elif opleiding =="25688":
-        oms="F,V&D 25688 Fashion Product Coordinator "     
+        oms="F&V 25688 Fashion Product Coordinator "     
     elif opleiding =="25689":
-        oms="F,V&D 25689 Basismedewerker fashion"   
+        oms="F&V 25689 Basismedewerker fashion"   
     elif opleiding =="25771":
-        oms="F,V&D 25771 Interieuradviseur"     
+        oms="F&V 25771 Interieuradviseur"     
     elif opleiding =="25811":
-        oms="F,V&D 25811 Ruimtelijk vormgever"   
+        oms="F&V 25811 Ruimtelijk vormgever"   
     #MEDIA
     elif opleiding =="25199":
         oms="Media 25199 Mediamanager"   
@@ -295,7 +295,7 @@ opleidingOmschrijving="NN 9999 leuke opleiding"
 #dirPath = "C:/tmp/CSV"
 #dirPath= "C:/ExcomCSV/CSVbron initialen"
 #padNaarDoel in het nieuwe dirPath
-pnd = "C:/Beoordelingsformulieren CI/General"
+pnd = "C:/Beoordelingen CI"
 padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Studentendosiers"
 #test
 maakMap(padNaarDoel)
@@ -393,19 +393,9 @@ for file in dirs:
                     print(studentMapnaam)
                    
                     #aanpassen voor beoordelingen CI
-                    #padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Studentendosiers"
-                    #padEnMapnaam=padNaarDoel+"/"+studentMapnaam
-                    #aanpassen oude situatie
-                    oOms=opleidingOmschrijving.split()
-                    # 0 - afdeling
-                    # 1 - crebo
-                    # 2 - omschrijving
-                    padNaarDoel=pnd+"/"+oOms[0]+"/"+"Cohort "+ cohort+"/"+crebo+" "+soortOpleiding+"/"
-                    #padEnMapnaam=padNaarDoel+"/"+studentMapnaam
-                    padEnMapnaam=padNaarDoel
-                    
+                    padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Studentendosiers"
+                    padEnMapnaam=padNaarDoel+"/"+studentMapnaam
                     maakMap(padEnMapnaam)
-                    maakMap(padEnMapnaam+"/git statuslege studentmappen/"+studentMapnaam)
                     maakInhoudMapStudent(padEnMapnaam,keuzedelen,generiekItems, beroepsItems)
                     
 #einde            
