@@ -10,11 +10,11 @@ screen = turtle.Screen()
 #screen.
 screen.bgpic()
 #'nopic'
-screen.bgpic("landschap.gif")
+screen.bgpic("c:\pypics\landschap2.gif")
 screen.bgpic()
 # "landscape.gif"
-
 """
+ 
 screen.bgcolor("black")
 pen.color("green")
 a = 0
@@ -24,7 +24,7 @@ pen.penup()
 pen.goto(0,200)
 pen.pendown()
 
-#turtle.colormode(255)
+turtle.colormode(255)
 
 while True:
 
@@ -42,3 +42,8 @@ while True:
 
 turtle.done()
 """
+
+
+print("tekening klaar")
+wacht=input("")
+        
