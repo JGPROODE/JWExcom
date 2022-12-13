@@ -109,7 +109,7 @@ opleidingOmschrijving="NN 9999 leuke opleiding"
 dirPath= "C:/ExcomCSV/CSVbron initialen"
 #padNaarDoel in het nieuwe dirPath
 pnd = "C:/Examendossiers"
-padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Studentendosiers"
+padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Studentendossiers"
 #test
 maakMap(padNaarDoel)
 
@@ -197,7 +197,7 @@ for file in dirs:
                     opleidingOmschrijving=haalOpleidingOmschrijvingOp(crebo) # row[4][0:5]
                     soortOpleiding=row[4][5:8]
                     #cohort=row[5]
-                    padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Studentendosiers"
+                    padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Studentendossiers"
                     padEnMapnaam=padNaarDoel+"/"+studentMapnaam
                     maakMap(padEnMapnaam)
                     
