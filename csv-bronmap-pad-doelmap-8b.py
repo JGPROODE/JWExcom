@@ -5,6 +5,7 @@ from tkinter import filedialog, messagebox
 from tkinter import ttk
 import pandas as pd
 
+
 class FileMoverApp:
     def __init__(self, root):
         self.root = root
@@ -12,8 +13,10 @@ class FileMoverApp:
 
         self.csv_file_path = tk.StringVar()
         self.source_folder = tk.StringVar()
-        self.path_columns = []
-        self.name_columns = []
+
+        # Nieuwe variabelen voor het bewaren van de geselecteerde kolommen
+        self.selected_path_columns = []
+        self.selected_name_columns = []
 
         # GUI-elementen
         tk.Label(root, text="Pad naar CSV-bestand:").grid(row=0, column=0, padx=10, pady=10)
@@ -52,16 +55,21 @@ class FileMoverApp:
 
         try:
             # Geef de puntkomma aan als scheidingsteken
-            #df = pd.read_csv(csv_file_path, sep=';')
             df = pd.read_csv(csv_file_path, sep=';', na_values=[''], keep_default_na=False)
         except Exception as e:
             messagebox.showerror("Fout", f"Fout bij het lezen van CSV-bestand:\n{e}")
             return
+
         # Verwijder lege kolommen
         df = df.dropna(axis=1, how='all')
+
         # Toon kolomkeuze na het inlezen van het CSV-bestand
         self.update_listbox(self.path_listbox, df.columns)
         self.update_listbox(self.name_listbox, df.columns)
+
+        # Bewaar de geselecteerde kolommen
+        self.selected_path_columns = []
+        self.selected_name_columns = []
 
     def update_listbox(self, listbox, column_names):
         listbox.delete(0, tk.END)
@@ -87,47 +95,43 @@ class FileMoverApp:
             messagebox.showerror("Fout", "Selecteer minstens één kolom voor de bestandsnaam.")
             return
 
-        path_columns = [self.path_listbox.get(idx) for idx in path_indices]
-        name_columns = [self.name_listbox.get(idx) for idx in name_indices]
+        # Bewaar de geselecteerde kolommen
+        self.selected_path_columns = [self.path_listbox.get(idx) for idx in path_indices]
+        self.selected_name_columns = [self.name_listbox.get(idx) for idx in name_indices]
 
-        # Maak een map voor elke rij in het CSV-bestand
-        df = pd.read_csv(csv_file_path, sep=';')
-        for index, row in df.iterrows():
-            # Maak het pad
-            destination_path = os.path.join("C:", *[str(row[name]) for name in path_columns])
+        # Lees het CSV-bestand
+        df = pd.read_csv(csv_file_path, sep=';', na_values=[''], keep_default_na=False)
+
+        # Loop over elk bestand in de bronmap en kopieer het naar de doelmap
+        for _, row in df.iterrows():
+            # Maak het pad op basis van de geselecteerde kolommen en volgorde
+            destination_path = os.path.join("C:\\testdoel", *[str(row[name]) for name in self.selected_path_columns])
+
+            # Maak de mapnaam op basis van de geselecteerde kolommen en volgorde
+            folder_name_parts = [str(row[name]) for name in self.selected_name_columns]
+            folder_name = "_".join(folder_name_parts)
+
+            # Voeg de mapnaam toe aan het pad
+            destination_path = os.path.join(destination_path, folder_name)
             self.create_directory(destination_path)
 
-            # Kopieer het bestand naar de doelmap met de nieuwe bestandsnaam
-            try:
-                file_name_parts = [str(row[name]) for name in name_columns]
-                destination_file = os.path.join(destination_path, "-".join(file_name_parts))
-                source_file = os.path.join(source_folder, str(row[name_columns[-1]]))
-
-                # Hier voegen we een nummer toe aan de bestandsnaam om conflicten te voorkomen
-                destination_file, counter = self.create_unique_filename(destination_file)
-
+            # Kopieer alle bestanden in de bronmap naar de doelmap
+            for filename in os.listdir(source_folder):
+                source_file = os.path.join(source_folder, filename)
+                
+                # Pas de bestandsnaam aan op basis van de geselecteerde kolommen en volgorde
+                file_name_parts = [str(row[name]) for name in self.selected_name_columns]
+                destination_file = os.path.join(destination_path, "_".join(file_name_parts) + os.path.splitext(filename)[1])
+                
+                # Kopieer het bestand naar de doelmap met de nieuwe bestandsnaam
                 shutil.copy2(source_file, destination_file)
-            except FileNotFoundError as e:
-                print(f"Fout bij kopiëren van bestand: {e}")
 
         messagebox.showinfo("Voltooid", "Bestanden zijn verplaatst!")
-
-def create_unique_filename(self, filename):
-    """
-    Voeg een nummer toe aan de bestandsnaam om conflicten te voorkomen.
-    """
-    counter = 1
-    while os.path.exists(filename):
-        base, ext = os.path.splitext(filename)
-        filename = f"{base}_{counter}{ext}"
-        counter += 1
-
-    return filename, counter
-
 
     def create_directory(self, path):
         if not os.path.exists(path):
             os.makedirs(path)
+
 
 if __name__ == "__main__":
     root = tk.Tk()

@@ -52,7 +52,6 @@ class FileMoverApp:
 
         try:
             # Geef de puntkomma aan als scheidingsteken
-            #df = pd.read_csv(csv_file_path, sep=';')
             df = pd.read_csv(csv_file_path, sep=';', na_values=[''], keep_default_na=False)
         except Exception as e:
             messagebox.showerror("Fout", f"Fout bij het lezen van CSV-bestand:\n{e}")
@@ -112,22 +111,21 @@ class FileMoverApp:
 
         messagebox.showinfo("Voltooid", "Bestanden zijn verplaatst!")
 
-def create_unique_filename(self, filename):
-    """
-    Voeg een nummer toe aan de bestandsnaam om conflicten te voorkomen.
-    """
-    counter = 1
-    while os.path.exists(filename):
-        base, ext = os.path.splitext(filename)
-        filename = f"{base}_{counter}{ext}"
-        counter += 1
-
-    return filename, counter
-
-
     def create_directory(self, path):
         if not os.path.exists(path):
             os.makedirs(path)
+
+    def create_unique_filename(self, filename):
+        """
+        Voeg een nummer toe aan de bestandsnaam om conflicten te voorkomen.
+        """
+        counter = 1
+        while os.path.exists(filename):
+            base, ext = os.path.splitext(filename)
+            filename = f"{base}_{counter}{ext}"
+            counter += 1
+
+        return filename, counter
 
 if __name__ == "__main__":
     root = tk.Tk()

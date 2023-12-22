@@ -52,7 +52,6 @@ class FileMoverApp:
 
         try:
             # Geef de puntkomma aan als scheidingsteken
-            #df = pd.read_csv(csv_file_path, sep=';')
             df = pd.read_csv(csv_file_path, sep=';', na_values=[''], keep_default_na=False)
         except Exception as e:
             messagebox.showerror("Fout", f"Fout bij het lezen van CSV-bestand:\n{e}")
@@ -71,6 +70,7 @@ class FileMoverApp:
     def move_files(self):
         csv_file_path = self.csv_file_path.get()
         source_folder = self.source_folder.get()
+        target_folder = "C:/testdoel/"  # Dit is het doelmap pad
 
         if not os.path.isfile(csv_file_path) or not os.path.isdir(source_folder):
             messagebox.showerror("Fout", "Ongeldige bestands- of maplocatie.")
@@ -94,13 +94,14 @@ class FileMoverApp:
         df = pd.read_csv(csv_file_path, sep=';')
         for index, row in df.iterrows():
             # Maak het pad
-            destination_path = os.path.join("C:", *[str(row[name]) for name in path_columns])
+            path_parts = [str(row[col]) for col in path_columns]
+            destination_path = os.path.join(target_folder, *path_parts)
             self.create_directory(destination_path)
 
             # Kopieer het bestand naar de doelmap met de nieuwe bestandsnaam
             try:
-                file_name_parts = [str(row[name]) for name in name_columns]
-                destination_file = os.path.join(destination_path, "-".join(file_name_parts))
+                name_parts = [str(row[col]) for col in name_columns]
+                destination_file = os.path.join(destination_path, "-".join(name_parts))
                 source_file = os.path.join(source_folder, str(row[name_columns[-1]]))
 
                 # Hier voegen we een nummer toe aan de bestandsnaam om conflicten te voorkomen
@@ -112,22 +113,22 @@ class FileMoverApp:
 
         messagebox.showinfo("Voltooid", "Bestanden zijn verplaatst!")
 
-def create_unique_filename(self, filename):
-    """
-    Voeg een nummer toe aan de bestandsnaam om conflicten te voorkomen.
-    """
-    counter = 1
-    while os.path.exists(filename):
-        base, ext = os.path.splitext(filename)
-        filename = f"{base}_{counter}{ext}"
-        counter += 1
-
-    return filename, counter
-
 
     def create_directory(self, path):
         if not os.path.exists(path):
             os.makedirs(path)
+
+    def create_unique_filename(self, filename):
+        """
+        Voeg een nummer toe aan de bestandsnaam om conflicten te voorkomen.
+        """
+        counter = 1
+        while os.path.exists(filename):
+            base, ext = os.path.splitext(filename)
+            filename = f"{base}_{counter}{ext}"
+            counter += 1
+
+        return filename, counter
 
 if __name__ == "__main__":
     root = tk.Tk()

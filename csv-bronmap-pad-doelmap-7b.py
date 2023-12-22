@@ -2,7 +2,6 @@ import os
 import shutil
 import tkinter as tk
 from tkinter import filedialog, messagebox
-from tkinter import ttk
 import pandas as pd
 
 class FileMoverApp:
@@ -12,8 +11,6 @@ class FileMoverApp:
 
         self.csv_file_path = tk.StringVar()
         self.source_folder = tk.StringVar()
-        self.path_columns = []
-        self.name_columns = []
 
         # GUI-elementen
         tk.Label(root, text="Pad naar CSV-bestand:").grid(row=0, column=0, padx=10, pady=10)
@@ -52,13 +49,14 @@ class FileMoverApp:
 
         try:
             # Geef de puntkomma aan als scheidingsteken
-            #df = pd.read_csv(csv_file_path, sep=';')
             df = pd.read_csv(csv_file_path, sep=';', na_values=[''], keep_default_na=False)
         except Exception as e:
             messagebox.showerror("Fout", f"Fout bij het lezen van CSV-bestand:\n{e}")
             return
+
         # Verwijder lege kolommen
         df = df.dropna(axis=1, how='all')
+
         # Toon kolomkeuze na het inlezen van het CSV-bestand
         self.update_listbox(self.path_listbox, df.columns)
         self.update_listbox(self.name_listbox, df.columns)
@@ -71,6 +69,7 @@ class FileMoverApp:
     def move_files(self):
         csv_file_path = self.csv_file_path.get()
         source_folder = self.source_folder.get()
+        destination_folder = "C:\\testdoel"
 
         if not os.path.isfile(csv_file_path) or not os.path.isdir(source_folder):
             messagebox.showerror("Fout", "Ongeldige bestands- of maplocatie.")
@@ -94,40 +93,56 @@ class FileMoverApp:
         df = pd.read_csv(csv_file_path, sep=';')
         for index, row in df.iterrows():
             # Maak het pad
-            destination_path = os.path.join("C:", *[str(row[name]) for name in path_columns])
+            destination_path = os.path.join(destination_folder, *[str(row[name]) for name in path_columns])
             self.create_directory(destination_path)
 
             # Kopieer het bestand naar de doelmap met de nieuwe bestandsnaam
-            try:
-                file_name_parts = [str(row[name]) for name in name_columns]
-                destination_file = os.path.join(destination_path, "-".join(file_name_parts))
-                source_file = os.path.join(source_folder, str(row[name_columns[-1]]))
+            file_name_parts = [str(row[name]) for name in name_columns]
 
-                # Hier voegen we een nummer toe aan de bestandsnaam om conflicten te voorkomen
-                destination_file, counter = self.create_unique_filename(destination_file)
+            #destination_file = os.path.join(destination_path, "_".join(file_name_parts) + os.path.splitext(row[name_columns[-1]])[1])
+            
+            file_extension = os.path.splitext(str(row[name_columns[-1]]))[1]
+            destination_file = os.path.join(destination_path, "_".join(file_name_parts) + file_extension)
 
+            
+           #source_file = os.path.join(source_folder, row[name_columns[-1]])
+            #source_file = os.path.join(source_folder, str(row[name_columns[-1]]))
+            source_file = os.path.join(source_folder, str(row[name_columns[-1]]).strip())
+
+        source_file_name = str(row[name_columns[-1]])
+        if source_file_name:
+            source_file = os.path.join(source_folder, source_file_name)
+            # Rest van de code hieronder blijft hetzelfde
+        else:
+            messagebox.showwarning("Waarschuwing", "Lege bestandsnaam in CSV. Bestand wordt overgeslagen.")
+            ontinue  # Overslaan van lege bestandsnaam
+
+
+
+
+
+            # Zorg ervoor dat het bronbestand bestaat voordat je probeert te kopiëren
+            if os.path.exists(source_file):
                 shutil.copy2(source_file, destination_file)
-            except FileNotFoundError as e:
-                print(f"Fout bij kopiëren van bestand: {e}")
+            else:
+                messagebox.showwarning("Waarschuwing", f"Bronbestand niet gevonden: {source_file}")
 
         messagebox.showinfo("Voltooid", "Bestanden zijn verplaatst!")
 
-def create_unique_filename(self, filename):
-    """
-    Voeg een nummer toe aan de bestandsnaam om conflicten te voorkomen.
-    """
-    counter = 1
-    while os.path.exists(filename):
-        base, ext = os.path.splitext(filename)
-        filename = f"{base}_{counter}{ext}"
-        counter += 1
-
-    return filename, counter
-
-
+     
     def create_directory(self, path):
         if not os.path.exists(path):
             os.makedirs(path)
+
+    def create_unique_filename(self, filename):
+        counter = 1
+        original_filename, extension = os.path.splitext(filename)
+
+        while os.path.exists(filename):
+            filename = f"{original_filename}_{counter}{extension}"
+            counter += 1
+
+        return filename, counter
 
 if __name__ == "__main__":
     root = tk.Tk()
