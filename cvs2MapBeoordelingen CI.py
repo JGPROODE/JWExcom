@@ -264,7 +264,8 @@ def haalOpleidingOmschrijvingOp(opleiding):
     elif opleiding =="25687":
         oms="F&V 25687 Fashion Designer"   
     elif opleiding =="25688":
-        oms="F&V 25688 Fashion Product Coordinator "     
+        oms="F&V 25688 Fashion Product Coordinator"    
+        print("nu bezig met 22688") 
     elif opleiding =="25689":
         oms="F&V 25689 Basismedewerker fashion"   
     elif opleiding =="25771":
@@ -301,8 +302,8 @@ padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Stu
 maakMap(padNaarDoel)
 
 #bronMap="c:/tmp/CSVbron"
-bronMap="C:\ExcomCSV\CSVbron initialen"
-cohortenOverzicht= ["2020","2021","2022"]
+bronMap="C:/ExcomCSV/testcsv"
+cohortenOverzicht= ["2020","2021","2022","2023"]
 opleidingenlijstICT=["25189","25191","25605","25606","25607"]
 opleidingenlijstMedia=["25199","25200","25201","25633"]
 opleidingenlijstFenV=["23207","25158","25159","25212","25526","25527","25163","25164","25684","25686","25687","25688","25689","25771","25811"]

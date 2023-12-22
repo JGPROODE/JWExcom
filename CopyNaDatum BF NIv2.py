@@ -3,10 +3,10 @@ import shutil
 import datetime
 
 
-#NIVEAU 2 COHORT 2021
+#NIVEAU 2 COHORT 2021 25686 BOL en 25607 BOL
 
-padBeoordelingen=["Beoordelingsformulieren CI - General\\F&V(archief Dans)\\Cohort 2021\\", "Beoordelingsformulieren CI - General\\ICT\\Cohort 2020\\","Beoordelingsformulieren CI - General\\CT\\Cohort 2020\\", "Beoordelingsformulieren CI - General\\MED\\Cohort 2020\\"]
-padTK8=["Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2022-2023\\F&V\\","Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2022-2023\\ICT\\" ,"Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2022-2023\\MED\\" , "Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2022-2023\\CT\\", ]
+padBeoordelingen=["Beoordelingsformulieren CI - General\\F&V(archief Dans)\\Cohort 2021\\25689 BOL\\", "Beoordelingsformulieren CI - General\\ICT\\Cohort 2021\\25607 BOL"]
+#padTK8=["Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2022-2023\\F&V\\","Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2022-2023\\ICT\\" ,"Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2022-2023\\MED\\" , "Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2022-2023\\CT\\", ]
 
 
 for pad in padBeoordelingen:
@@ -41,7 +41,8 @@ for pad in padBeoordelingen:
 #    target="c:\\ExcomTK8"
 
     # De datum waar je mee wilt vergelijken (jaar, maand, dag)
-    date = datetime.datetime(2023, 6, 17,0,0,0) #run 20230622
+    #vanaf begin niveau 2
+    date = datetime.datetime(2023, 6, 22,0,0,0) #run 20230622 #run 20230709 #run 3-11-2023
 
     # Loop door de bronmap en zijn submappen
     for root, dirs, files in os.walk(source):
@@ -59,7 +60,7 @@ for pad in padBeoordelingen:
                 # Krijg het relatieve pad van het bestand ten opzichte van de bronmap
                 relative_path = os.path.relpath(file_path, source)
                 # Krijg het volledige pad van het bestand in de doelmap
-                target_path = os.path.join(target,"Beoordelingen", opl,"cohort 2020",relative_path)
+                target_path = os.path.join(target,"Beoordelingen", opl,"cohort 2021",relative_path) #NIVEAU 2
                 # Maak de doelmap als die nog niet bestaat
                 os.makedirs(os.path.dirname(target_path), exist_ok=True)
                 # Kopieer het bestand naar de doelmap

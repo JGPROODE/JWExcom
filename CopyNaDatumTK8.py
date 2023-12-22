@@ -2,14 +2,15 @@ import os
 import shutil
 import datetime
 
-padBeoordelingen=["Beoordelingsformulieren CI - General\\F&V(archief Dans)\\Cohort 2020\\", "Beoordelingsformulieren CI - General\\ICT\\Cohort 2020\\","Beoordelingsformulieren CI - General\\CT\\Cohort 2020\\", "Beoordelingsformulieren CI - General\\MED\\Cohort 2020\\"]
+#padBeoordelingen=["Beoordelingsformulieren CI - General\\F&V(archief Dans)\\Cohort 2020\\", "Beoordelingsformulieren CI - General\\ICT\\Cohort 2020\\","Beoordelingsformulieren CI - General\\CT\\Cohort 2020\\", "Beoordelingsformulieren CI - General\\MED\\Cohort 2020\\"]
 padTK8=["Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2022-2023\\F&V\\","Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2022-2023\\ICT\\" ,"Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2022-2023\\MED\\" , "Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2022-2023\\CT\\", ]
-
-
-for pad in padTK8:
+padTK81=["Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2023-2024\\F&V\\","Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2023-2024\\ICT\\" ,"Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2023-2024\\MED\\" , "Taakgroep 08 (examenresultaten)\\Vastgestelde resultaten\\2023-2024\\CT\\", ]
+#let op date regel 45
+print("START")
+for pad in padTK81:
    # print(pad)
-    print("pad is :",pad)
-    print("---")
+    #print("Pad is : "+pad)
+    print("------------------------------------------------")
 
     #bestand om bestanden na een bepaalde datum te kopieren. Zowel voor de beoordelingensite als voor TK)*
     # De bronmap waar je wilt zoeken !! 4x med, ict, ct en F&V, voor beoordelingen
@@ -40,7 +41,9 @@ for pad in padTK8:
     target="c:\\ExcomTK8"
 
     # De datum waar je mee wilt vergelijken (jaar, maand, dag)
-    date = datetime.datetime(2023, 6, 17,0,0,0) #run 20230622
+    date = datetime.datetime(2023, 10, 13,0,0,0) #run 20230622 run 20230709 run 20231013 wel gedaan
+    #let OP 2023-2024 datum date is dan 1-8-2023
+    #date = datetime.datetime(2023, 8, 1,0,0,0) #run 20231013 nog niet gedaan
 
     # Loop door de bronmap en zijn submappen
     for root, dirs, files in os.walk(source):
@@ -62,6 +65,7 @@ for pad in padTK8:
                 # Maak de doelmap als die nog niet bestaat
                 os.makedirs(os.path.dirname(target_path), exist_ok=True)
                 # Kopieer het bestand naar de doelmap
+                print(str(file_path)+"-XXXXX--"+str(target_path) )
                 shutil.copy(file_path, target_path)
                 # Print een bericht dat het bestand is gekopieerd
                 print(f"{file_path} gekopieerd naar {target_path}")

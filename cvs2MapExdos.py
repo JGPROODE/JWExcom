@@ -1,7 +1,7 @@
 import os
 import csv
 
-
+#alles gelukt 27-10-2023 exdos bijgewerkt op c 
 #omzetten van csv bestanden met studentgegeven in mappen van studenten in het juiste cohort en opleiding
 # de bronbestanden staan in bronMap. alle csv bestanden die daar in staan worden gelezen en indien het een cohort uit cohortenOverzicht betfet omgezet in de map op de plaats .
 # C:\Users\ROOJ\Aventus\Creatieve Industrie Examencommissie - Documenten\Examendossiers\CT 25187 Applicatie- en mediaontwikkelaar\BOL\2019\Studentendossiers\
@@ -79,7 +79,7 @@ def haalOpleidingOmschrijvingOp(opleiding):
     elif opleiding =="25687":
         oms="F&V 25687 Fashion Designer"   
     elif opleiding =="25688":
-        oms="F&V 25688 Fashion Product Coordinator "     
+        oms="F&V 25688 Fashion Product Coordinator"     
     elif opleiding =="25689":
         oms="F&V 25689 Basismedewerker fashion"   
     elif opleiding =="25771":
@@ -94,7 +94,11 @@ def haalOpleidingOmschrijvingOp(opleiding):
     elif opleiding=="25201":
         oms="Media 25201 Mediavormgever"   
     elif opleiding=="25633":
-        oms="Media 25633 Mediavormgever"    
+        oms="Media 25633 Mediavormgever"   
+    elif opleiding=="25881":
+        oms="Media 25881 Mediamanager" 
+    elif opleiding=="25882":
+        oms="Media 25882 Mediaredactiemedewerker" 
     else:
          oms="99999-foutje"
     return oms
@@ -106,7 +110,7 @@ opleidingOmschrijving="NN 9999 leuke opleiding"
 
 
 #dirPath = "C:/tmp/CSV"
-dirPath= "C:/ExcomCSV/CSVbron initialen"
+#dirPath= "C://ExcomCSV//2023CSV//"#CSVbron initialen"
 #padNaarDoel in het nieuwe dirPath
 pnd = "C:/Examendossiers"
 padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Studentendossiers"
@@ -114,10 +118,10 @@ padNaarDoel=pnd+"/"+opleidingOmschrijving+"/"+soortOpleiding+"/"+cohort+"/"+"Stu
 maakMap(padNaarDoel)
 
 #bronMap="c:/tmp/CSVbron"
-bronMap="C:\ExcomCSV\CSVbron initialen"
-cohortenOverzicht= ["2020","2021","2022"]
+bronMap="C:/ExcomCSV/testcsv"#fout//"#CSVbron initialen"
+cohortenOverzicht= ["2020","2021","2022","2023"]
 opleidingenlijstICT=["25189","25191","25605","25606","25607"]
-opleidingenlijstMedia=["25199","25200","25201","25633"]
+opleidingenlijstMedia=["25199","25200","25201","25633","25881","25882"]
 opleidingenlijstFenV=["23207","25158","25159","25212","25526","25527","25163","25164","25684","25686","25687","25688","25689","25771","25811"]
 opleidingenlijstDans=["25495"]
 opleidingenlijstCT=["25187","25188","25604","25265"]
@@ -161,7 +165,7 @@ for file in dirs:
 
 
 for file in dirs:
-    
+    print("--->"+str(file))
     with open(bronMap+"/"+str(file), 'r') as f:
         # lees het bestand
         csvReader = csv.reader(f,delimiter=';')
