@@ -27,15 +27,15 @@ class FileMoverApp:
 
         tk.Button(root, text="Lees CSV-bestand", command=self.read_csv).grid(row=2, column=1, pady=10)
 
-        tk.Label(root, text="Selecteer padkolommen:").grid(row=3, column=0, padx=10, pady=10)
+        tk.Label(root, text="Selecteer kolommen voor het pad:").grid(row=3, column=0, padx=10, pady=10)
         self.path_listbox = tk.Listbox(root, selectmode=tk.MULTIPLE, exportselection=0)
         self.path_listbox.grid(row=4, column=0, padx=10, pady=10)
 
-        tk.Label(root, text="Selecteer naamkolommen:").grid(row=3, column=1, padx=10, pady=10)
+        tk.Label(root, text="Selecteer kolommen voor de studentmap:").grid(row=3, column=1, padx=10, pady=10)
         self.name_listbox = tk.Listbox(root, selectmode=tk.MULTIPLE, exportselection=0)
         self.name_listbox.grid(row=4, column=1, padx=10, pady=10)
 
-        tk.Label(root, text="Selecteer prefixkolommen:").grid(row=3, column=2, padx=10, pady=10)
+        tk.Label(root, text="Selecteer kolommen voor de prefix van de bestanden:").grid(row=3, column=2, padx=10, pady=10)
         self.prefix_listbox = tk.Listbox(root, selectmode=tk.MULTIPLE, exportselection=0)
         self.prefix_listbox.grid(row=4, column=2, padx=10, pady=10)
 

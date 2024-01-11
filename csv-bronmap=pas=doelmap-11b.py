@@ -79,6 +79,7 @@ class FileMoverApp:
     def move_files(self):
         csv_file_path = self.csv_file_path.get()
         source_folder = self.source_folder.get()
+        target_folder = "C:/testdoel/" 
 
         if not os.path.isfile(csv_file_path) or not os.path.isdir(source_folder):
             messagebox.showerror("Fout", "Ongeldige bestands- of maplocatie.")
@@ -113,7 +114,8 @@ class FileMoverApp:
         self.selected_prefix_columns = [self.prefix_listbox.get(idx) for idx in prefix_indices]
 
         for _, row in df.iterrows():
-            destination_path = os.path.join(source_folder, *[str(row[name]) for name in self.selected_path_columns])
+                # destination_path = os.path.join(target_folder, *path_parts)
+            destination_path = os.path.join(target_folder, *[str(row[name]) for name in self.selected_path_columns])
 
             folder_name_parts = [str(row[name]) for name in self.selected_name_columns]
             folder_name = "_".join(folder_name_parts)
