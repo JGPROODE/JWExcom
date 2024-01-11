@@ -7,7 +7,7 @@ import pandas as pd
 class FileMoverApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("ExcomTool-2024")
+        self.root.title("Bestandsverplaatsingstool")
 
         self.csv_file_path = tk.StringVar()
         self.source_folder = tk.StringVar()
