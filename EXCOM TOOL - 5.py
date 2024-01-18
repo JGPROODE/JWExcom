@@ -29,6 +29,7 @@ class FileMoverApp:
         # Gele achtergrond met rode letters voor de titelbalk
         self.root.option_add('*TFrame*background', TITLE_BAR_BACKGROUND_COLOR)
         self.root.option_add('*TFrame*foreground', TITLE_BAR_TEXT_COLOR)
+    
 
         self.csv_file_path = tk.StringVar()
         self.source_folder = tk.StringVar()
